@@ -49,6 +49,13 @@ it('allows to override a value with a state', function (): void {
     expect($factory->state(['foo' => 'qux'])->createOne())->toBe(['foo' => 'qux']);
 });
 
+it('state does not changes original factory', function (): void {
+    $factory = new ArrayFactory(['foo' => 'bar']);
+
+    expect($factory->state(['foo' => 'qux'])->createOne())->toBe(['foo' => 'qux']);
+    expect($factory->createOne())->toBe(['foo' => 'bar']);
+});
+
 it('allows to define custom state', function (): void {
     $factory = new ArrayFactory(
         definition: ['foo' => 'bar'],
@@ -85,6 +92,22 @@ it('allows to remove multiple fields', function (): void {
     );
 
     expect($factory->without('foo', 'baz')->createOne())->toBe([]);
+});
+
+it('allows to remove and add fields', function (): void {
+    $factory = new ArrayFactory(
+        definition: ['foo' => 'bar'],
+    );
+
+    expect($factory->without('foo')->createOne(['foo' => 'plop']))->toBe(['foo' => 'plop']);
+});
+
+it('allows to add and remove multiple fields', function (): void {
+    $factory = new ArrayFactory(
+        definition: ['foo' => 'bar'],
+    );
+
+    expect($factory->state(['rux' => 'tax'])->without('rux')->createOne())->toBe(['foo' => 'bar']);
 });
 
 it('allows to nullify some fields', function (): void {
