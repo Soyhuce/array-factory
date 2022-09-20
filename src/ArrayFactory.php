@@ -7,6 +7,9 @@ use Illuminate\Support\Collection;
 use LogicException;
 use Spatie\DataTransferObject\DataTransferObject;
 use stdClass;
+use function count;
+use function is_callable;
+use function is_string;
 
 /**
  * @template TDtoClass of \Spatie\DataTransferObject\DataTransferObject
@@ -14,9 +17,7 @@ use stdClass;
  */
 class ArrayFactory
 {
-    /**
-     * @var array<string, mixed>
-     */
+    /** @var array<string, mixed> */
     protected array $appliedStates = [];
 
     protected object $placeholder;
@@ -67,17 +68,16 @@ class ArrayFactory
             return $this->state($state)->create();
         }
 
-        return array_map(fn() => $this->createOne(), range(1, $this->count));
+        return array_map(fn () => $this->createOne(), range(1, $this->count));
     }
 
     /**
      * @param array<string, mixed>|callable(): array<string, mixed>|string $state
-     * @return static
      */
     public function state(array|callable|string $state): static
     {
         if (is_string($state)) {
-            $state = $this->states[$state] ?? throw new LogicException("State $state is not defined");
+            $state = $this->states[$state] ?? throw new LogicException("State {$state} is not defined");
         }
         if (is_callable($state)) {
             $state = $state();
@@ -110,7 +110,8 @@ class ArrayFactory
     public function sequence(array ...$sequence): static
     {
         var_dump(new Sequence(...$sequence));
-        die();
+        exit;
+
         return $this->state(new Sequence(...$sequence));
     }
 
