@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "soyhuce/array-factory",
+    "description": "This is my package array-factory",
     "keywords": [
-        ":vendor_name",
+        "soyhuce",
         "laravel",
-        ":package_slug"
+        "array-factory"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/soyhuce/array-factory",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Bastien Philippe",
+            "email": "bastien.philippe@soyhuce.fr",
             "role": "Developer"
         }
     ],
@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Soyhuce\\ArrayFactory\\": "src",
+            "Soyhuce\\ArrayFactory\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Soyhuce\\ArrayFactory\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -60,10 +60,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Soyhuce\\ArrayFactory\\ArrayFactoryServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "ArrayFactory": "Soyhuce\\ArrayFactory\\Facades\\ArrayFactory"
             }
         }
     },

@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace VendorName\Skeleton\Commands;
+namespace Soyhuce\ArrayFactory\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ArrayFactoryCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'array-factory';
 
     public $description = 'My command';
 

@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace VendorName\Skeleton;
+namespace Soyhuce\ArrayFactory;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Soyhuce\ArrayFactory\Commands\ArrayFactoryCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class ArrayFactoryServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('array-factory')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_array-factory_table')
+            ->hasCommand(ArrayFactoryCommand::class);
     }
 }
