@@ -38,7 +38,7 @@ class ArrayFactory
      * @param class-string<TDtoClass> $dto
      * @param class-string<TCollectionClass> $collection
      */
-    public function __construct(
+    final public function __construct(
         public array $definition = [],
         public array $states = [],
         string $dto = DataTransferObject::class,
@@ -51,6 +51,14 @@ class ArrayFactory
         if ($this->definition === []) {
             $this->definition = $this->definition();
         }
+    }
+
+    /**
+     * @param array<string, mixed> $attributes
+     */
+    public static function new(array $attributes = []): static
+    {
+        return (new static())->state($attributes);
     }
 
     /**

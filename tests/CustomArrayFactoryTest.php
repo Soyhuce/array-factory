@@ -13,6 +13,15 @@ it('can create an array with custom factory', function (): void {
     ]);
 });
 
+it('instantiate a custom array factory with new', function (): void {
+    $factory = CustomArrayFactory::new(['id' => 2]);
+
+    expect($factory->createOne())->toBe([
+        'id' => 2,
+        'email' => 'email@email.com',
+    ]);
+});
+
 it('can create a dto with custom factory', function (): void {
     $factory = new CustomArrayFactory();
 
