@@ -61,6 +61,11 @@ class ArrayFactory
         return (new static())->state($attributes);
     }
 
+    public static function times(int $count): static
+    {
+        return static::new()->count($count);
+    }
+
     /**
      * @return array<string, mixed>
      */

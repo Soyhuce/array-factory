@@ -56,6 +56,12 @@ assertType(
     $newFactory->asDtoCollection()
 );
 
+$timesFactory = ArrayFactory::times(2);
+assertType(
+    'Soyhuce\\ArrayFactory\\ArrayFactory',
+    ArrayFactory::times(2)
+);
+
 $factoryWithCustoms = new ArrayFactory(['foo' => 'bar'], dto: CustomDTO::class, collection: CustomCollection::class);
 
 assertType(
@@ -122,21 +128,12 @@ assertType(
 //    $customFactory->asDtoCollection()
 // );
 
-$customFactoryWithNew = CustomArrayFactory::new();
+assertType(
+    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomArrayFactory',
+    CustomArrayFactory::new()
+);
 
 assertType(
-    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO',
-    $customFactoryWithNew->asDto()
+    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomArrayFactory',
+    CustomArrayFactory::times(2)
 );
-assertType(
-    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-    $customFactoryWithNew->asDtos()
-);
-// assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, array<string, mixed>>',
-//    $customFactoryWithNew->asCollection()
-// );
-// assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-//    $customFactoryWithNew->asDtoCollection()
-// );
