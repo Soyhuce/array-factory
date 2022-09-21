@@ -141,6 +141,13 @@ it('allows to create multiple items at a time', function (): void {
     ]);
 });
 
+it('allows to create multiple items at a time with static times call', function (): void {
+    expect(ArrayFactory::times(2)->create(['foo' => 'bar']))->toBe([
+        ['foo' => 'bar'],
+        ['foo' => 'bar'],
+    ]);
+});
+
 it('allows to create multiple items at a time with override', function (): void {
     $factory = new ArrayFactory(['foo' => 'bar']);
 
