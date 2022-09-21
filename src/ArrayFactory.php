@@ -2,7 +2,9 @@
 
 namespace Soyhuce\ArrayFactory;
 
+use Illuminate\Database\Eloquent\Factories\CrossJoinSequence;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 use LogicException;
 use Spatie\DataTransferObject\DataTransferObject;
@@ -17,7 +19,13 @@ use function is_string;
  */
 class ArrayFactory
 {
-    /** @var array<string, mixed> */
+    /** @var class-string<TDtoClass> */
+    protected string $dto;
+
+    /** @var class-string<TCollectionClass> */
+    protected string $collection;
+
+    /** @var array<int, callable(array<string, mixed>, callable(array<string,mixed>): array<string,mixed>): array<string, mixed>> */
     protected array $appliedStates = [];
 
     protected object $placeholder;
@@ -31,12 +39,26 @@ class ArrayFactory
      * @param class-string<TCollectionClass> $collection
      */
     public function __construct(
-        public array $definition,
+        public array $definition = [],
         public array $states = [],
-        public string $dto = DataTransferObject::class,
-        public string $collection = Collection::class,
+        string $dto = DataTransferObject::class,
+        string $collection = Collection::class,
     ) {
+        $this->dto ??= $dto;
+        $this->collection ??= $collection;
         $this->placeholder = new stdClass();
+
+        if ($this->definition === []) {
+            $this->definition = $this->definition();
+        }
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [];
     }
 
     /**
@@ -49,13 +71,13 @@ class ArrayFactory
             return $this->state($state)->createOne();
         }
 
-        return array_map(
-            $this->resolve(...),
-            array_filter(
-                [...$this->definition, ...$this->appliedStates],
-                fn (mixed $value) => $value !== $this->placeholder,
-            ),
-        );
+        return (new Pipeline())
+            ->send($this->definition)
+            ->through($this->appliedStates)
+            ->then(fn (array $attributes) => new Collection($attributes))
+            ->filter(fn (mixed $attribute) => $attribute !== $this->placeholder)
+            ->map(fn (mixed $attribute) => is_callable($attribute) ? $attribute() : $attribute)
+            ->toArray();
     }
 
     /**
@@ -72,6 +94,42 @@ class ArrayFactory
     }
 
     /**
+     * @param array<string, mixed> $state
+     * @return TDtoClass
+     */
+    public function asDto(array $state = []): DataTransferObject
+    {
+        return new ($this->dto)($this->createOne($state));
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return array<int, TDtoClass>
+     */
+    public function asDtos(array $state = []): array
+    {
+        return array_map(fn (array $attributes) => new ($this->dto)($attributes), $this->create($state));
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return TCollectionClass<int, array<string, mixed>>
+     */
+    public function asCollection(array $state = []): Collection
+    {
+        return new ($this->collection)($this->create($state));
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return TCollectionClass<int, TDtoClass>
+     */
+    public function asDtoCollection(array $state = []): Collection
+    {
+        return new ($this->collection)($this->asDtos($state));
+    }
+
+    /**
      * @param array<string, mixed>|callable(): array<string, mixed>|string $state
      */
     public function state(array|callable|string $state): static
@@ -79,17 +137,17 @@ class ArrayFactory
         if (is_string($state)) {
             $state = $this->states[$state] ?? throw new LogicException("State {$state} is not defined");
         }
-        if (is_callable($state)) {
-            $state = $state();
+        if (!is_callable($state)) {
+            $state = fn () => $state;
         }
 
         $clone = clone $this;
-        $clone->appliedStates = array_merge($clone->appliedStates, $state);
+        $clone->appliedStates[] = fn (array $attributes, callable $next) => $next([...$attributes, ...$state()]);
 
         return $clone;
     }
 
-    public function count(int $count): self
+    public function count(int $count): static
     {
         $clone = clone $this;
         $clone->count = $count;
@@ -107,17 +165,28 @@ class ArrayFactory
         return $this->state(array_fill_keys($fields, null));
     }
 
+    /**
+     * @param array<string, mixed> ...$sequence
+     */
     public function sequence(array ...$sequence): static
     {
-        var_dump(new Sequence(...$sequence));
-        exit;
-
         return $this->state(new Sequence(...$sequence));
     }
 
-    protected function resolve(mixed $value): mixed
+    /**
+     * @param array<string, mixed> ...$sequence
+     */
+    public function forEachSequence(array ...$sequence): static
     {
-        return is_callable($value) ? $value() : $value;
+        return $this->state(new Sequence(...$sequence))->count(count($sequence));
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> ...$sequence
+     */
+    public function crossJoinSequence(array ...$sequence): static
+    {
+        return $this->state(new CrossJoinSequence(...$sequence));
     }
 
     /**

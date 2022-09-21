@@ -3,6 +3,7 @@
 $finder = PhpCsFixer\Finder::create()->in([
     'src',
     'tests',
+    'types',
 ]);
 
 return (new PhpCsFixer\Config())

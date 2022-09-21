@@ -2,7 +2,9 @@
 
 namespace Soyhuce\ArrayFactory\Tests\Fixtures;
 
-class CustomDTO extends Spatie\DataTransferObject\DataTransferObject
+use Spatie\DataTransferObject\DataTransferObject;
+
+class CustomDTO extends DataTransferObject
 {
     public int $id;
 

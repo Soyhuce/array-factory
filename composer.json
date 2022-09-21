@@ -18,7 +18,8 @@
     "require": {
         "php": "^8.1",
         "illuminate/collections": "^9.0",
-        "illuminate/database": "^9.31"
+        "illuminate/database": "^9.31",
+        "illuminate/pipeline": "^9.31"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.9",
@@ -28,7 +29,8 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "spatie/data-transfer-object": "^3.9"
+        "spatie/data-transfer-object": "^3.9",
+        "symfony/var-dumper": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -45,9 +47,11 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
+        "test-types": "vendor/bin/phpstan --configuration=\"phpstan.types.neon.dist\"",
         "all": [
             "@cs",
             "@test",
+            "@test-types",
             "@analyse"
         ]
     },
