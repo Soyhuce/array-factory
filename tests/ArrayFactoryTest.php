@@ -11,6 +11,12 @@ it('can create an array', function (): void {
     expect($factory->createOne())->toBe(['foo' => 'bar']);
 });
 
+it('instantiate an array factory with new', function (): void {
+    $factory = ArrayFactory::new(['foo' => 'bar']);
+
+    expect($factory->createOne())->toBe(['foo' => 'bar']);
+});
+
 it('can create an array with callable value', function (): void {
     $factory = new ArrayFactory(['foo' => fn () => 'bar']);
 

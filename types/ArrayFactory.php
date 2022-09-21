@@ -37,6 +37,25 @@ assertType(
     $factory->asDtoCollection()
 );
 
+$newFactory = ArrayFactory::new(['foo' => 'bar']);
+
+assertType(
+    'Soyhuce\\ArrayFactory\\ArrayFactory',
+    $newFactory
+);
+assertType(
+    'array<int, Spatie\\DataTransferObject\\DataTransferObject>',
+    $newFactory->asDtos()
+);
+assertType(
+    'Illuminate\\Support\\Collection<int, array<string, mixed>>',
+    $newFactory->asCollection()
+);
+assertType(
+    'Illuminate\\Support\\Collection<int, Spatie\\DataTransferObject\\DataTransferObject>',
+    $newFactory->asDtoCollection()
+);
+
 $factoryWithCustoms = new ArrayFactory(['foo' => 'bar'], dto: CustomDTO::class, collection: CustomCollection::class);
 
 assertType(
@@ -101,4 +120,23 @@ assertType(
 // assertType(
 //    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
 //    $customFactory->asDtoCollection()
+// );
+
+$customFactoryWithNew = CustomArrayFactory::new();
+
+assertType(
+    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO',
+    $customFactoryWithNew->asDto()
+);
+assertType(
+    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
+    $customFactoryWithNew->asDtos()
+);
+// assertType(
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, array<string, mixed>>',
+//    $customFactoryWithNew->asCollection()
+// );
+// assertType(
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
+//    $customFactoryWithNew->asDtoCollection()
 // );
