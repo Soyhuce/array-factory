@@ -107,6 +107,15 @@ class ArrayFactory
     }
 
     /**
+     * @param array<string, mixed> ...$state
+     * @return array<int, array<string, mixed>>
+     */
+    public function createMany(array ...$state): array
+    {
+        return $this->forEachSequence(...$state)->create();
+    }
+
+    /**
      * @param array<string, mixed> $state
      * @return TDtoClass
      */
@@ -125,6 +134,15 @@ class ArrayFactory
     }
 
     /**
+     * @param array<string, mixed> ...$state
+     * @return array<int, TDtoClass>
+     */
+    public function manyAsDtos(array ...$state): array
+    {
+        return $this->forEachSequence(...$state)->asDtos();
+    }
+
+    /**
      * @param array<string, mixed> $state
      * @return TCollectionClass<int, array<string, mixed>>
      */
@@ -134,12 +152,30 @@ class ArrayFactory
     }
 
     /**
+     * @param array<string, mixed> ...$state
+     * @return TCollectionClass<int, array<string, mixed>>
+     */
+    public function manyAsCollection(array ...$state): Collection
+    {
+        return $this->forEachSequence(...$state)->asCollection();
+    }
+
+    /**
      * @param array<string, mixed> $state
      * @return TCollectionClass<int, TDtoClass>
      */
     public function asDtoCollection(array $state = []): Collection
     {
         return new ($this->collection)($this->asDtos($state));
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return TCollectionClass<int, TDtoClass>
+     */
+    public function manyAsDtoCollection(array ...$state): Collection
+    {
+        return $this->forEachSequence(...$state)->asDtoCollection();
     }
 
     /**
