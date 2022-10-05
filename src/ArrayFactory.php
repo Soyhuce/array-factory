@@ -2,6 +2,7 @@
 
 namespace Soyhuce\ArrayFactory;
 
+use Closure;
 use Illuminate\Database\Eloquent\Factories\CrossJoinSequence;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Pipeline\Pipeline;
@@ -89,7 +90,7 @@ class ArrayFactory
             ->through($this->appliedStates)
             ->then(fn (array $attributes) => new Collection($attributes))
             ->filter(fn (mixed $attribute) => $attribute !== $this->placeholder)
-            ->map(fn (mixed $attribute) => is_callable($attribute) ? $attribute() : $attribute)
+            ->map(fn (mixed $attribute) => $this->isCallable($attribute) ? $attribute() : $attribute)
             ->toArray();
     }
 
@@ -244,5 +245,17 @@ class ArrayFactory
     public function __invoke(): array
     {
         return $this->createOne();
+    }
+
+    private function isCallable(mixed $attribute): bool
+    {
+        if ($attribute instanceof Closure) {
+            return true;
+        }
+        if (is_object($attribute) && is_callable($attribute)) {
+            return true;
+        }
+
+        return false;
     }
 }
