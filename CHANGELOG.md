@@ -2,6 +2,14 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.3.0 - 2022-10-05
+
+### What's Changed
+
+- Add createMany and related methods by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/3
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.2.0...0.3.0
+
 ## 0.2.0 - 2022-10-05
 
 ### What's Changed
