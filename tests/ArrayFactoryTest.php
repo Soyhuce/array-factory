@@ -407,3 +407,15 @@ it('allows get many results as collection of dtos', function (): void {
         ->id->toBe(3)
         ->email->toBe('email@email.com');
 });
+
+it('does not call function if string is callable', function (): void {
+    $factory = new ArrayFactory(['foo' => 'pi']);
+
+    expect($factory->createOne())->toBe(['foo' => 'pi']);
+});
+
+it('does not call function if array is callable', function (): void {
+    $factory = new ArrayFactory(['foo' => [ArrayFactory::class, 'new']]);
+
+    expect($factory->createOne())->toBe(['foo' => [ArrayFactory::class, 'new']]);
+});
