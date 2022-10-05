@@ -12,6 +12,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 use stdClass;
 use function count;
 use function is_callable;
+use function is_object;
 use function is_string;
 
 /**
