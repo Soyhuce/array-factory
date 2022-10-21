@@ -2,6 +2,18 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.4.0 - 2022-10-21
+
+### What's Changed
+
+- run tests on PHP8.2 by @qanvo in https://github.com/Soyhuce/array-factory/pull/7
+
+### New Contributors
+
+- @qanvo made their first contribution in https://github.com/Soyhuce/array-factory/pull/7
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.3.1...0.4.0
+
 ## 0.3.1 - 2022-10-05
 
 ### What's Changed
