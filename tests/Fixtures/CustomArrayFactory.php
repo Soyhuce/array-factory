@@ -5,11 +5,11 @@ namespace Soyhuce\ArrayFactory\Tests\Fixtures;
 use Soyhuce\ArrayFactory\ArrayFactory;
 
 /**
- * @extends ArrayFactory<CustomDTO, CustomCollection>
+ * @extends ArrayFactory<CustomData, CustomCollection>
  */
 class CustomArrayFactory extends ArrayFactory
 {
-    public string $dto = CustomDTO::class;
+    public string $data = CustomData::class;
 
     public string $collection = CustomCollection::class;
 
