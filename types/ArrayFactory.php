@@ -45,11 +45,11 @@ assertType(
     $factory->manyAsCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
     $factory->asDataCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
     $factory->manyAsDataCollection()
 );
 
@@ -76,11 +76,11 @@ assertType(
     $newFactory->manyAsCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
     $newFactory->asDataCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
     $newFactory->manyAsDataCollection()
 );
 
