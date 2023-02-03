@@ -2,7 +2,7 @@
 
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomCollection;
-use Soyhuce\ArrayFactory\Tests\Fixtures\CustomDTO;
+use Soyhuce\ArrayFactory\Tests\Fixtures\CustomData;
 
 it('can create an array with custom factory', function (): void {
     $factory = new CustomArrayFactory();
@@ -22,11 +22,11 @@ it('instantiate a custom array factory with new', function (): void {
     ]);
 });
 
-it('can create a dto with custom factory', function (): void {
+it('can create a data with custom factory', function (): void {
     $factory = new CustomArrayFactory();
 
-    expect($factory->asDto())
-        ->toBeInstanceOf(CustomDTO::class)
+    expect($factory->asData())
+        ->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 });

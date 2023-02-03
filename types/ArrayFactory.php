@@ -3,13 +3,13 @@
 use Soyhuce\ArrayFactory\ArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomCollection;
-use Soyhuce\ArrayFactory\Tests\Fixtures\CustomDTO;
+use Soyhuce\ArrayFactory\Tests\Fixtures\CustomData;
 use function PHPStan\Testing\assertType;
 
 $factory = new ArrayFactory(['foo' => 'bar']);
 
 assertType(
-    'Soyhuce\\ArrayFactory\\ArrayFactory<Spatie\\DataTransferObject\\DataTransferObject, Illuminate\\Support\\Collection>',
+    'Soyhuce\\ArrayFactory\\ArrayFactory<Spatie\\LaravelData\\Data, Illuminate\\Support\\Collection>',
     $factory
 );
 assertType(
@@ -25,16 +25,16 @@ assertType(
     $factory->createMany()
 );
 assertType(
-    'Spatie\\DataTransferObject\\DataTransferObject',
-    $factory->asDto()
+    'Spatie\\LaravelData\\Data',
+    $factory->asData()
 );
 assertType(
-    'array<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $factory->asDtos()
+    'array<int, Spatie\\LaravelData\\Data>',
+    $factory->asDatas()
 );
 assertType(
-    'array<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $factory->manyAsDtos()
+    'array<int, Spatie\\LaravelData\\Data>',
+    $factory->manyAsDatas()
 );
 assertType(
     'Illuminate\\Support\\Collection<int, array<string, mixed>>',
@@ -45,12 +45,12 @@ assertType(
     $factory->manyAsCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $factory->asDtoCollection()
+    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    $factory->asDataCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $factory->manyAsDtoCollection()
+    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    $factory->manyAsDataCollection()
 );
 
 $newFactory = ArrayFactory::new(['foo' => 'bar']);
@@ -60,12 +60,12 @@ assertType(
     $newFactory
 );
 assertType(
-    'array<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $newFactory->asDtos()
+    'array<int, Spatie\\LaravelData\\Data>',
+    $newFactory->asDatas()
 );
 assertType(
-    'array<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $newFactory->manyAsDtos()
+    'array<int, Spatie\\LaravelData\\Data>',
+    $newFactory->manyAsDatas()
 );
 assertType(
     'Illuminate\\Support\\Collection<int, array<string, mixed>>',
@@ -76,12 +76,12 @@ assertType(
     $newFactory->manyAsCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $newFactory->asDtoCollection()
+    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    $newFactory->asDataCollection()
 );
 assertType(
-    'Illuminate\\Support\\Collection<int, Spatie\\DataTransferObject\\DataTransferObject>',
-    $newFactory->manyAsDtoCollection()
+    'Illuminate\\Support\\Collection<int, Spatie\\LaravelData\\Data>',
+    $newFactory->manyAsDataCollection()
 );
 
 $timesFactory = ArrayFactory::times(2);
@@ -90,10 +90,10 @@ assertType(
     ArrayFactory::times(2)
 );
 
-$factoryWithCustoms = new ArrayFactory(['foo' => 'bar'], dto: CustomDTO::class, collection: CustomCollection::class);
+$factoryWithCustoms = new ArrayFactory(['foo' => 'bar'], data: CustomData::class, collection: CustomCollection::class);
 
 assertType(
-    'Soyhuce\\ArrayFactory\\ArrayFactory<Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection>',
+    'Soyhuce\\ArrayFactory\\ArrayFactory<Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection>',
     $factoryWithCustoms
 );
 assertType(
@@ -109,16 +109,16 @@ assertType(
     $factoryWithCustoms->createMany()
 );
 assertType(
-    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO',
-    $factoryWithCustoms->asDto()
+    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData',
+    $factoryWithCustoms->asData()
 );
 assertType(
-    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-    $factoryWithCustoms->asDtos()
+    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+    $factoryWithCustoms->asDatas()
 );
 assertType(
-    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-    $factoryWithCustoms->manyAsDtos()
+    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+    $factoryWithCustoms->manyAsDatas()
 );
 // assertType(
 //    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, array<string, mixed>>',
@@ -129,12 +129,12 @@ assertType(
 //    $factoryWithCustoms->manyAsCollection()
 // );
 // assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-//    $factoryWithCustoms->asDtoCollection()
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+//    $factoryWithCustoms->asDataCollection()
 // );
 // assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-//    $factoryWithCustoms->manyAsDtoCollection()
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+//    $factoryWithCustoms->manyAsDataCollection()
 // );
 
 $customFactory = new CustomArrayFactory();
@@ -160,16 +160,16 @@ assertType(
     $customFactory->createMany()
 );
 assertType(
-    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO',
-    $customFactory->asDto()
+    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData',
+    $customFactory->asData()
 );
 assertType(
-    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-    $customFactory->asDtos()
+    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+    $customFactory->asDatas()
 );
 assertType(
-    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-    $customFactory->manyAsDtos()
+    'array<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+    $customFactory->manyAsDatas()
 );
 // assertType(
 //    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, array<string, mixed>>',
@@ -180,12 +180,12 @@ assertType(
 //    $customFactory->manyAsCollection()
 // );
 // assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-//    $customFactory->asDtoCollection()
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+//    $customFactory->asDataCollection()
 // );
 // assertType(
-//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomDTO>',
-//    $customFactory->manyAsDtoCollection()
+//    'Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomCollection<int, Soyhuce\\ArrayFactory\\Tests\\Fixtures\\CustomData>',
+//    $customFactory->manyAsDataCollection()
 // );
 
 assertType(

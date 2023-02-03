@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 use LogicException;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 use stdClass;
 use function count;
 use function is_callable;
@@ -16,13 +16,13 @@ use function is_object;
 use function is_string;
 
 /**
- * @template TDtoClass of \Spatie\DataTransferObject\DataTransferObject
+ * @template TDataClass of \Spatie\LaravelData\Data
  * @template TCollectionClass of \Illuminate\Support\Collection
  */
 class ArrayFactory
 {
-    /** @var class-string<TDtoClass> */
-    protected string $dto;
+    /** @var class-string<TDataClass> */
+    protected string $data;
 
     /** @var class-string<TCollectionClass> */
     protected string $collection;
@@ -37,16 +37,16 @@ class ArrayFactory
     /**
      * @param array<string, mixed> $definition
      * @param array<string, array<string, mixed>|callable(): array<string, mixed>> $states
-     * @param class-string<TDtoClass> $dto
+     * @param class-string<TDataClass> $data
      * @param class-string<TCollectionClass> $collection
      */
     final public function __construct(
         public array $definition = [],
         public array $states = [],
-        string $dto = DataTransferObject::class,
+        string $data = Data::class,
         string $collection = Collection::class,
     ) {
-        $this->dto ??= $dto;
+        $this->data ??= $data;
         $this->collection ??= $collection;
         $this->placeholder = new stdClass();
 
@@ -119,34 +119,34 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> $state
-     * @return TDtoClass
+     * @return TDataClass
      */
-    public function asDto(array $state = []): DataTransferObject
+    public function asData(array $state = []): Data
     {
-        return new ($this->dto)($this->createOne($state));
+        return new ($this->data)(...$this->createOne($state));
     }
 
     /**
      * @param array<string, mixed> $state
-     * @return array<int, TDtoClass>
+     * @return array<int, TDataClass>
      */
-    public function asDtos(array $state = []): array
+    public function asDatas(array $state = []): array
     {
-        return array_map(fn (array $attributes) => new ($this->dto)($attributes), $this->create($state));
+        return array_map(fn (array $attributes) => new ($this->data)(...$attributes), $this->create($state));
     }
 
     /**
      * @param array<string, mixed> ...$state
-     * @return array<int, TDtoClass>
+     * @return array<int, TDataClass>
      */
-    public function manyAsDtos(array ...$state): array
+    public function manyAsDatas(array ...$state): array
     {
-        return $this->forEachSequence(...$state)->asDtos();
+        return $this->forEachSequence(...$state)->asDatas();
     }
 
     /**
      * @param array<string, mixed> $state
-     * @return TCollectionClass<int, array<string, mixed>>
+     * @return TCollectionClass <int, array<string, mixed>>
      */
     public function asCollection(array $state = []): Collection
     {
@@ -155,7 +155,7 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> ...$state
-     * @return TCollectionClass<int, array<string, mixed>>
+     * @return TCollectionClass <int, array<string, mixed>>
      */
     public function manyAsCollection(array ...$state): Collection
     {
@@ -164,20 +164,20 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> $state
-     * @return TCollectionClass<int, TDtoClass>
+     * @return TCollectionClass <int, TDataClass>
      */
-    public function asDtoCollection(array $state = []): Collection
+    public function asDataCollection(array $state = []): Collection
     {
-        return new ($this->collection)($this->asDtos($state));
+        return new ($this->collection)($this->asDatas($state));
     }
 
     /**
      * @param array<string, mixed> $state
-     * @return TCollectionClass<int, TDtoClass>
+     * @return TCollectionClass <int, TDataClass>
      */
-    public function manyAsDtoCollection(array ...$state): Collection
+    public function manyAsDataCollection(array ...$state): Collection
     {
-        return $this->forEachSequence(...$state)->asDtoCollection();
+        return $this->forEachSequence(...$state)->asDataCollection();
     }
 
     /**

@@ -3,7 +3,7 @@
 use Illuminate\Support\Collection;
 use Soyhuce\ArrayFactory\ArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomCollection;
-use Soyhuce\ArrayFactory\Tests\Fixtures\CustomDTO;
+use Soyhuce\ArrayFactory\Tests\Fixtures\CustomData;
 
 it('can create an array', function (): void {
     $factory = new ArrayFactory(['foo' => 'bar']);
@@ -222,82 +222,82 @@ it('allows to create with cross joined sequence', function (): void {
     ]);
 });
 
-it('allows get the result as dto', function (): void {
+it('allows get the result as data', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
     );
 
-    expect($factory->asDto())
-        ->toBeInstanceOf(CustomDTO::class)
+    expect($factory->asData())
+        ->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 });
 
-it('allows get the result as dto with override', function (): void {
+it('allows get the result as data with override', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
     );
 
-    expect($factory->asDto(['id' => 2]))
-        ->toBeInstanceOf(CustomDTO::class)
+    expect($factory->asData(['id' => 2]))
+        ->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 });
 
-it('allows get the result as array of dtos', function (): void {
+it('allows get the result as array of datas', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
     );
 
-    $dtos = $factory->count(2)->asDtos();
-    expect($dtos)
+    $datas = $factory->count(2)->asDatas();
+    expect($datas)
         ->toBeArray()
         ->toHaveCount(2);
 
-    expect($dtos[0])->toBeInstanceOf(CustomDTO::class)
+    expect($datas[0])->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 
-    expect($dtos[1])->toBeInstanceOf(CustomDTO::class)
+    expect($datas[1])->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 });
 
-it('allows get the result as array of dtos with override', function (): void {
+it('allows get the result as array of datas with override', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
     );
 
-    $dtos = $factory->asDtos(['id' => 2]);
-    expect($dtos)
+    $datas = $factory->asDatas(['id' => 2]);
+    expect($datas)
         ->toBeArray()
         ->toHaveCount(1);
 
-    expect($dtos[0])->toBeInstanceOf(CustomDTO::class)
+    expect($datas[0])->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 });
 
-it('allows get many results as array of dtos', function (): void {
+it('allows get many results as array of datas', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
     );
 
-    $dtos = $factory->manyAsDtos(['id' => 2], ['id' => 3]);
-    expect($dtos)
+    $datas = $factory->manyAsDatas(['id' => 2], ['id' => 3]);
+    expect($datas)
         ->toBeArray()
         ->toHaveCount(2);
 
-    expect($dtos[0])->toBeInstanceOf(CustomDTO::class)
+    expect($datas[0])->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 
-    expect($dtos[1])->toBeInstanceOf(CustomDTO::class)
+    expect($datas[1])->toBeInstanceOf(CustomData::class)
         ->id->toBe(3)
         ->email->toBe('email@email.com');
 });
@@ -349,61 +349,61 @@ it('allows to create multiple items as a custom collection', function (): void {
         ]);
 });
 
-it('allows get the result as collection of dtos', function (): void {
+it('allows get the result as collection of datas', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
         collection: CustomCollection::class,
     );
 
-    $dtos = $factory->count(2)->asDtoCollection();
-    expect($dtos)
+    $datas = $factory->count(2)->asDataCollection();
+    expect($datas)
         ->toBeInstanceOf(CustomCollection::class)
         ->toHaveCount(2);
 
-    expect($dtos->first())->toBeInstanceOf(CustomDTO::class)
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 
-    expect($dtos->last())->toBeInstanceOf(CustomDTO::class)
+    expect($datas->last())->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 });
 
-it('allows get the result as collection of dtos with override', function (): void {
+it('allows get the result as collection of datas with override', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
         collection: CustomCollection::class,
     );
 
-    $dtos = $factory->asDtoCollection(['id' => 2]);
-    expect($dtos)
+    $datas = $factory->asDataCollection(['id' => 2]);
+    expect($datas)
         ->toBeInstanceOf(CustomCollection::class)
         ->toHaveCount(1);
 
-    expect($dtos->first())->toBeInstanceOf(CustomDTO::class)
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 });
 
-it('allows get many results as collection of dtos', function (): void {
+it('allows get many results as collection of datas', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
-        dto: CustomDTO::class,
+        data: CustomData::class,
         collection: CustomCollection::class,
     );
 
-    $dtos = $factory->manyAsDtoCollection(['id' => 2], ['id' => 3]);
-    expect($dtos)
+    $datas = $factory->manyAsDataCollection(['id' => 2], ['id' => 3]);
+    expect($datas)
         ->toBeInstanceOf(CustomCollection::class)
         ->toHaveCount(2);
 
-    expect($dtos->first())->toBeInstanceOf(CustomDTO::class)
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 
-    expect($dtos->last())->toBeInstanceOf(CustomDTO::class)
+    expect($datas->last())->toBeInstanceOf(CustomData::class)
         ->id->toBe(3)
         ->email->toBe('email@email.com');
 });
