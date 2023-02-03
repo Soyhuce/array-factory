@@ -4,6 +4,7 @@ use Illuminate\Support\Collection;
 use Soyhuce\ArrayFactory\ArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomCollection;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomData;
+use Spatie\LaravelData\DataCollection;
 
 it('can create an array', function (): void {
     $factory = new ArrayFactory(['foo' => 'bar']);
@@ -358,14 +359,14 @@ it('allows get the result as collection of datas', function (): void {
 
     $datas = $factory->count(2)->asDataCollection();
     expect($datas)
-        ->toBeInstanceOf(CustomCollection::class)
+        ->toBeInstanceOf(DataCollection::class)
         ->toHaveCount(2);
 
     expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 
-    expect($datas->last())->toBeInstanceOf(CustomData::class)
+    expect($datas->offsetGet(1))->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
 });
@@ -379,7 +380,7 @@ it('allows get the result as collection of datas with override', function (): vo
 
     $datas = $factory->asDataCollection(['id' => 2]);
     expect($datas)
-        ->toBeInstanceOf(CustomCollection::class)
+        ->toBeInstanceOf(DataCollection::class)
         ->toHaveCount(1);
 
     expect($datas->first())->toBeInstanceOf(CustomData::class)
@@ -387,7 +388,7 @@ it('allows get the result as collection of datas with override', function (): vo
         ->email->toBe('email@email.com');
 });
 
-it('allows get many results as collection of datas', function (): void {
+it('allows get many results as DataCollection of data', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
         data: CustomData::class,
@@ -396,14 +397,14 @@ it('allows get many results as collection of datas', function (): void {
 
     $datas = $factory->manyAsDataCollection(['id' => 2], ['id' => 3]);
     expect($datas)
-        ->toBeInstanceOf(CustomCollection::class)
+        ->toBeInstanceOf(DataCollection::class)
         ->toHaveCount(2);
 
     expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
 
-    expect($datas->last())->toBeInstanceOf(CustomData::class)
+    expect($datas->offsetGet(1))->toBeInstanceOf(CustomData::class)
         ->id->toBe(3)
         ->email->toBe('email@email.com');
 });
