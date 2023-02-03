@@ -27,6 +27,7 @@ use Soyhuce\ArrayFactory;
 $factory = new ArrayFactory(['foo' => 'bar']); // from an array
 $factory = ArrayFactory::new(['foo' => 'bar']); // from static method new
 $factory = ArrayFactory::new(fn () => ['foo' => 'bar']); // with a callable
+$factory = ArrayFactory::new(fn () => ['foo' => faker()->word() ]); // using \Faker\Generator generation
 ```
 
 #### Use it
@@ -99,6 +100,7 @@ class FooFactory extends ArrayFactory
         return [
             'id' => 1,
             'activated' => true,
+            'message' => faker()->sentence(),
             'value' => 0,
         ];
     }
