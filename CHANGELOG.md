@@ -2,6 +2,14 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.6.0 - 2023-02-27
+
+### What's Changed
+
+- Create Datas using magical from by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/14
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.5.0...0.6.0
+
 ## 0.5.0 - 2023-02-27
 
 ### What's Changed
