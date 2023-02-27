@@ -2,6 +2,19 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.5.0 - 2023-02-27
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/Soyhuce/array-factory/pull/9
+- Bump ramsey/composer-install from 1 to 2 by @dependabot in https://github.com/Soyhuce/array-factory/pull/10
+- Run tests without deprecation handling by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/8
+- Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 by @dependabot in https://github.com/Soyhuce/array-factory/pull/11
+- Dto to data by @qanvo in https://github.com/Soyhuce/array-factory/pull/12
+- Laravel 10 support by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/13
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.4.0...0.5.0
+
 ## 0.4.0 - 2022-10-21
 
 ### What's Changed
