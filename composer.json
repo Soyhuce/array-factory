@@ -1,67 +1,67 @@
 {
-  "name": "soyhuce/array-factory",
-  "description": "This is my package array-factory",
-  "keywords": [
-    "soyhuce",
-    "laravel",
-    "array-factory"
-  ],
-  "homepage": "https://github.com/soyhuce/array-factory",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Bastien Philippe",
-      "email": "bastien.philippe@soyhuce.fr",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php": "^8.1",
-    "illuminate/collections": "^9.0",
-    "illuminate/database": "^9.0",
-    "illuminate/pipeline": "^9.0"
-  },
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.10",
-    "pestphp/pest": "^1.21",
-    "phpstan/extension-installer": "^1.1",
-    "phpstan/phpstan": "^1.8.5",
-    "phpstan/phpstan-deprecation-rules": "^1.0",
-    "phpstan/phpstan-phpunit": "^1.0",
-    "phpunit/phpunit": "^9.5",
-    "spatie/laravel-data": "^3.0",
-    "symfony/var-dumper": "^6.1"
-  },
-  "autoload": {
-    "psr-4": {
-      "Soyhuce\\ArrayFactory\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Soyhuce\\ArrayFactory\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "cs": "vendor/bin/php-cs-fixer fix",
-    "analyse": "vendor/bin/phpstan analyse",
-    "test": "vendor/bin/pest",
-    "test-coverage": "vendor/bin/pest --coverage",
-    "test-types": "vendor/bin/phpstan --configuration=\"phpstan.types.neon.dist\"",
-    "all": [
-      "@cs",
-      "@test",
-      "@test-types",
-      "@analyse"
-    ]
-  },
-  "config": {
-    "sort-packages": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "phpstan/extension-installer": true
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "soyhuce/array-factory",
+    "description": "This is my package array-factory",
+    "keywords": [
+        "soyhuce",
+        "laravel",
+        "array-factory"
+    ],
+    "homepage": "https://github.com/soyhuce/array-factory",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bastien Philippe",
+            "email": "bastien.philippe@soyhuce.fr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/collections": "^9.0 || ^10.0",
+        "illuminate/database": "^9.0 || ^10.0",
+        "illuminate/pipeline": "^9.0 || ^10.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.10",
+        "pestphp/pest": "^1.21",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^1.8.5",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-data": "^3.0",
+        "symfony/var-dumper": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Soyhuce\\ArrayFactory\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Soyhuce\\ArrayFactory\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "test-types": "vendor/bin/phpstan --configuration=\"phpstan.types.neon.dist\"",
+        "all": [
+            "@cs",
+            "@test",
+            "@test-types",
+            "@analyse"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
