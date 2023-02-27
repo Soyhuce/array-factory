@@ -124,7 +124,7 @@ class ArrayFactory
      */
     public function asData(array $state = []): Data
     {
-        return new ($this->data)(...$this->createOne($state));
+        return $this->data::from($this->createOne($state));
     }
 
     /**
@@ -133,7 +133,7 @@ class ArrayFactory
      */
     public function asDatas(array $state = []): array
     {
-        return array_map(fn (array $attributes) => new ($this->data)(...$attributes), $this->create($state));
+        return array_map(fn (array $attributes) => $this->data::from($attributes), $this->create($state));
     }
 
     /**
