@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Collection;
 use Soyhuce\ArrayFactory\ArrayFactory;
 use Soyhuce\ArrayFactory\Tests\Fixtures\CustomCollection;
@@ -419,4 +420,16 @@ it('does not call function if array is callable', function (): void {
     $factory = new ArrayFactory(['foo' => [ArrayFactory::class, 'new']]);
 
     expect($factory->createOne())->toBe(['foo' => [ArrayFactory::class, 'new']]);
+});
+
+it('does not serialize inner elements', function (): void {
+    User::unguard();
+
+    $factory = new ArrayFactory([
+        'user' => new User(['id' => 1]),
+    ]);
+
+    expect($factory->createOne()['user'])
+        ->toBeInstanceOf(User::class)
+        ->id->toBe(1);
 });

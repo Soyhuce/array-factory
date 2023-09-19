@@ -93,7 +93,7 @@ class ArrayFactory
             ->then(fn (array $attributes) => new Collection($attributes))
             ->filter(fn (mixed $attribute) => $attribute !== $this->placeholder)
             ->map(fn (mixed $attribute) => $this->isCallable($attribute) ? $attribute() : $attribute)
-            ->toArray();
+            ->all();
     }
 
     /**
