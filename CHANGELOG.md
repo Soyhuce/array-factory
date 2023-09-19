@@ -2,6 +2,18 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.6.1 - 2023-09-19
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/Soyhuce/array-factory/pull/15
+- Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/Soyhuce/array-factory/pull/16
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/Soyhuce/array-factory/pull/17
+- Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/Soyhuce/array-factory/pull/18
+- Don't serialize Arrayable elements when creating an array by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/19
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.6.0...0.6.1
+
 ## 0.6.0 - 2023-02-27
 
 ### What's Changed
