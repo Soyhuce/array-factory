@@ -87,13 +87,21 @@ class ArrayFactory
             return $this->state($state)->createOne();
         }
 
-        return (new Pipeline())
+        /** @var Collection<string, mixed> $attributes */
+        $attributes = (new Pipeline())
             ->send($this->definition)
             ->through($this->appliedStates)
             ->then(fn (array $attributes) => new Collection($attributes))
-            ->filter(fn (mixed $attribute) => $attribute !== $this->placeholder)
-            ->map(fn (mixed $attribute) => $this->isCallable($attribute) ? $attribute() : $attribute)
-            ->all();
+            ->filter(fn (mixed $attribute) => $attribute !== $this->placeholder);
+
+        return $attributes->reduce(
+            function (array $carry, mixed $attribute, string $key) {
+                $carry[$key] = $this->isCallable($attribute) ? $attribute($carry) : $attribute;
+
+                return $carry;
+            },
+            $attributes->all()
+        );
     }
 
     /**

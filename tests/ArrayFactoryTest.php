@@ -433,3 +433,17 @@ it('does not serialize inner elements', function (): void {
         ->toBeInstanceOf(User::class)
         ->id->toBe(1);
 });
+
+it('calls callable attributes with known attributes', function (): void {
+    $factory = new ArrayFactory([
+        'first' => 1,
+        'second' => fn (array $attributes) => $attributes['first'] + 1,
+        'third' => fn (array $attributes) => $attributes['second'] + 1,
+    ]);
+
+    expect($factory->createOne())->toBe([
+        'first' => 1,
+        'second' => 2,
+        'third' => 3,
+    ]);
+});
