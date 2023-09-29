@@ -2,6 +2,14 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 0.7.0 - 2023-09-29
+
+### What's Changed
+
+- Give attributes array to callable attributes by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/20
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.6.1...0.7.0
+
 ## 0.6.1 - 2023-09-19
 
 ### What's Changed
