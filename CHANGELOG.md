@@ -2,6 +2,19 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 1.0.0 - 2023-11-24
+
+### What's Changed
+
+- Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/Soyhuce/array-factory/pull/21
+- Run tests on PHP 8.3 by @EdenMl in https://github.com/Soyhuce/array-factory/pull/22
+
+### New Contributors
+
+- @EdenMl made their first contribution in https://github.com/Soyhuce/array-factory/pull/22
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/0.7.0...1.0.0
+
 ## 0.7.0 - 2023-09-29
 
 ### What's Changed
