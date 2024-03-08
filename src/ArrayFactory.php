@@ -155,7 +155,7 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> $state
-     * @return TCollectionClass <int, array<string, mixed>>
+     * @return TCollectionClass<int, array<string, mixed>>
      */
     public function asCollection(array $state = []): Collection
     {
@@ -164,7 +164,7 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> ...$state
-     * @return TCollectionClass <int, array<string, mixed>>
+     * @return TCollectionClass<int, array<string, mixed>>
      */
     public function manyAsCollection(array ...$state): Collection
     {
@@ -173,7 +173,8 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> $state
-     * @return DataCollection <int, TDataClass>
+     * @return DataCollection<int, TDataClass>
+     * @deprecated
      */
     public function asDataCollection(array $state = []): DataCollection
     {
@@ -182,11 +183,30 @@ class ArrayFactory
 
     /**
      * @param array<string, mixed> $state
-     * @return DataCollection <int, TDataClass>
+     * @return DataCollection<int, TDataClass>
+     * @deprecated
      */
     public function manyAsDataCollection(array ...$state): DataCollection
     {
         return $this->forEachSequence(...$state)->asDataCollection();
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return TCollectionClass<int, TDataClass>
+     */
+    public function asCollectionOfData(array $state = []): Collection
+    {
+        return new ($this->collection)($this->asDatas($state));
+    }
+
+    /**
+     * @param array<string, mixed> $state
+     * @return TCollectionClass<int, TDataClass>
+     */
+    public function manyAsCollectionOfData(array ...$state): Collection
+    {
+        return $this->forEachSequence(...$state)->asCollectionOfData();
     }
 
     /**

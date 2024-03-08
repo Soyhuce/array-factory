@@ -17,9 +17,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/collections": "^10.0",
-        "illuminate/database": "^10.0",
-        "illuminate/pipeline": "^10.0"
+        "illuminate/collections": "^10.0 || ^11.0",
+        "illuminate/database": "^10.0 || ^11.0",
+        "illuminate/pipeline": "^10.0 || ^11.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.10",
@@ -30,7 +30,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^10.4",
-        "spatie/laravel-data": "^3.0",
+        "spatie/laravel-data": "^3.0 || ^4.0",
         "symfony/var-dumper": "^6.1"
     },
     "autoload": {

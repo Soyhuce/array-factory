@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use Composer\InstalledVersions;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Collection;
 use Soyhuce\ArrayFactory\ArrayFactory;
@@ -351,7 +352,7 @@ it('allows to create multiple items as a custom collection', function (): void {
         ]);
 });
 
-it('allows get the result as collection of datas', function (): void {
+it('allows get the result as DataCollection of datas', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
         data: CustomData::class,
@@ -370,9 +371,9 @@ it('allows get the result as collection of datas', function (): void {
     expect($datas->offsetGet(1))->toBeInstanceOf(CustomData::class)
         ->id->toBe(1)
         ->email->toBe('email@email.com');
-});
+})->skip(fn () => version_compare(InstalledVersions::getVersion('spatie/laravel-data'), '4.0', '>='));
 
-it('allows get the result as collection of datas with override', function (): void {
+it('allows get the result as DataCollection of datas with override', function (): void {
     $factory = new ArrayFactory(
         definition: ['id' => 1, 'email' => 'email@email.com'],
         data: CustomData::class,
@@ -387,7 +388,7 @@ it('allows get the result as collection of datas with override', function (): vo
     expect($datas->first())->toBeInstanceOf(CustomData::class)
         ->id->toBe(2)
         ->email->toBe('email@email.com');
-});
+})->skip(fn () => version_compare(InstalledVersions::getVersion('spatie/laravel-data'), '4.0', '>='));
 
 it('allows get many results as DataCollection of data', function (): void {
     $factory = new ArrayFactory(
@@ -399,6 +400,65 @@ it('allows get many results as DataCollection of data', function (): void {
     $datas = $factory->manyAsDataCollection(['id' => 2], ['id' => 3]);
     expect($datas)
         ->toBeInstanceOf(DataCollection::class)
+        ->toHaveCount(2);
+
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
+        ->id->toBe(2)
+        ->email->toBe('email@email.com');
+
+    expect($datas->offsetGet(1))->toBeInstanceOf(CustomData::class)
+        ->id->toBe(3)
+        ->email->toBe('email@email.com');
+})->skip(fn () => version_compare(InstalledVersions::getVersion('spatie/laravel-data'), '4.0', '>='));
+
+it('allows get the result as Collection of datas', function (): void {
+    $factory = new ArrayFactory(
+        definition: ['id' => 1, 'email' => 'email@email.com'],
+        data: CustomData::class,
+        collection: CustomCollection::class,
+    );
+
+    $datas = $factory->count(2)->asCollectionOfData();
+    expect($datas)
+        ->toBeInstanceOf(Collection::class)
+        ->toHaveCount(2);
+
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
+        ->id->toBe(1)
+        ->email->toBe('email@email.com');
+
+    expect($datas->offsetGet(1))->toBeInstanceOf(CustomData::class)
+        ->id->toBe(1)
+        ->email->toBe('email@email.com');
+});
+
+it('allows get the result as Collection of datas with override', function (): void {
+    $factory = new ArrayFactory(
+        definition: ['id' => 1, 'email' => 'email@email.com'],
+        data: CustomData::class,
+        collection: CustomCollection::class,
+    );
+
+    $datas = $factory->asCollectionOfData(['id' => 2]);
+    expect($datas)
+        ->toBeInstanceOf(Collection::class)
+        ->toHaveCount(1);
+
+    expect($datas->first())->toBeInstanceOf(CustomData::class)
+        ->id->toBe(2)
+        ->email->toBe('email@email.com');
+});
+
+it('allows get many results as Collection of data', function (): void {
+    $factory = new ArrayFactory(
+        definition: ['id' => 1, 'email' => 'email@email.com'],
+        data: CustomData::class,
+        collection: CustomCollection::class,
+    );
+
+    $datas = $factory->manyAsCollectionOfData(['id' => 2], ['id' => 3]);
+    expect($datas)
+        ->toBeInstanceOf(Collection::class)
         ->toHaveCount(2);
 
     expect($datas->first())->toBeInstanceOf(CustomData::class)
