@@ -2,6 +2,15 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 1.1.0 - 2024-03-08
+
+### What's Changed
+
+* Bump ramsey/composer-install from 2 to 3 by @dependabot in https://github.com/Soyhuce/array-factory/pull/23
+* Add support for Laravel 11 and Laravel data 4 by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/24
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/1.0.0...1.1.0
+
 ## 1.0.0 - 2023-11-24
 
 ### What's Changed
