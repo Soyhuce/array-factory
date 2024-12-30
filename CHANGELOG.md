@@ -2,6 +2,15 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 2.0.0 - 2024-12-30
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.1.0 by @dependabot in https://github.com/Soyhuce/array-factory/pull/26
+* Upgrade dependencies and php 8.4 by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/27
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/1.1.0...2.0.0
+
 ## 1.1.0 - 2024-03-08
 
 ### What's Changed
