@@ -1,9 +1,9 @@
 # This is array-factory package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/soyhuce/array-factory.svg?style=flat-square)](https://packagist.org/packages/soyhuce/array-factory)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/soyhuce/array-factory/run-tests?label=tests)](https://github.com/soyhuce/array-factory/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/soyhuce/array-factory/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/soyhuce/array-factory/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![GitHub PHPStan Action Status](https://img.shields.io/github/workflow/status/soyhuce/array-factory/PHPStan?label=phpstan)](https://github.com/soyhuce/array-factory/actions?query=workflow%3APHPStan+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/soyhuce/array-factory/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/soyhuce/array-factory/actions/workflows/run-tests.yml)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/soyhuce/array-factory/phpstan.yml?branch=main&label=phpstan&style=flat-square)](https://github.com/soyhuce/array-factory/actions/workflows/phpstan.yml)
+[![GitHub PHPStan Action Status](https://img.shields.io/github/actions/workflow/status/soyhuce/array-factory/php-cs-fixer.yml?branch=main&label=php-cs-fixer&style=flat-square)](https://github.com/soyhuce/array-factory/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/soyhuce/array-factory.svg?style=flat-square)](https://packagist.org/packages/soyhuce/array-factory)
 
 When testing your application, you may need to write the same data structures (lists, collections, Etc.) to populate models or something else. These often duplicated in multiple test files.

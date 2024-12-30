@@ -1,9 +1,9 @@
-name: Fix PHP code style issues
+name: Check & fix styling
 
 on: [push]
 
 jobs:
-  php-code-styling:
+  php-cs-fixer:
     runs-on: ubuntu-latest
 
     steps:
