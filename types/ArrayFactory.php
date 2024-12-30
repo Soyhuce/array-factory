@@ -44,14 +44,6 @@ assertType(
     'Illuminate\\Support\\Collection<int, array<string, mixed>>',
     $factory->manyAsCollection()
 );
-assertType(
-    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
-    $factory->asDataCollection()
-);
-assertType(
-    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
-    $factory->manyAsDataCollection()
-);
 
 $newFactory = ArrayFactory::new(['foo' => 'bar']);
 
@@ -74,14 +66,6 @@ assertType(
 assertType(
     'Illuminate\\Support\\Collection<int, array<string, mixed>>',
     $newFactory->manyAsCollection()
-);
-assertType(
-    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
-    $newFactory->asDataCollection()
-);
-assertType(
-    'Spatie\\LaravelData\\DataCollection<int, Spatie\\LaravelData\\Data>',
-    $newFactory->manyAsDataCollection()
 );
 
 $timesFactory = ArrayFactory::times(2);

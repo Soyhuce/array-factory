@@ -9,7 +9,6 @@ use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 use LogicException;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\DataCollection;
 use stdClass;
 use function count;
 use function is_callable;
@@ -169,26 +168,6 @@ class ArrayFactory
     public function manyAsCollection(array ...$state): Collection
     {
         return $this->forEachSequence(...$state)->asCollection();
-    }
-
-    /**
-     * @param array<string, mixed> $state
-     * @return DataCollection<int, TDataClass>
-     * @deprecated
-     */
-    public function asDataCollection(array $state = []): DataCollection
-    {
-        return ($this->data)::collection($this->asDatas($state));
-    }
-
-    /**
-     * @param array<string, mixed> $state
-     * @return DataCollection<int, TDataClass>
-     * @deprecated
-     */
-    public function manyAsDataCollection(array ...$state): DataCollection
-    {
-        return $this->forEachSequence(...$state)->asDataCollection();
     }
 
     /**
