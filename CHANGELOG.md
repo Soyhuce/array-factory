@@ -2,6 +2,16 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 2.1.0 - 2025-02-24
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/Soyhuce/array-factory/pull/28
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/Soyhuce/array-factory/pull/29
+* Run tests with Laravel 12 by @bastien-phi in https://github.com/Soyhuce/array-factory/pull/30
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/2.0.0...2.1.0
+
 ## 2.0.0 - 2024-12-30
 
 ### What's Changed
