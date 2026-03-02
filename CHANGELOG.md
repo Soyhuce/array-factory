@@ -2,6 +2,14 @@
 
 All notable changes to `array-factory` will be documented in this file.
 
+## 2.2.0 - 2026-03-02
+
+### What's Changed
+
+* Add support for PHP 8.5 in https://github.com/Soyhuce/array-factory/pull/37
+
+**Full Changelog**: https://github.com/Soyhuce/array-factory/compare/2.1.0...2.2.0
+
 ## 2.1.0 - 2025-02-24
 
 ### What's Changed
